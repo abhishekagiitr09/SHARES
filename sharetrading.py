@@ -9,7 +9,7 @@ import os
 # ------------------------------
 EMAIL_SENDER = os.environ.get("EMAIL_SENDER")
 EMAIL_PASSWORD = os.environ.get("EMAIL_PASSWORD")
-EMAIL_RECEIVER = EMAIL_SENDER
+EMAIL_RECEIVER = os.environ.get("EMAIL_RECEIVER")
 
 def get_nifty_200_tickers():
     """Dynamically fetches Nifty 200 symbols to increase universe size."""
