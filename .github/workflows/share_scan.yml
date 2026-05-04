@@ -33,4 +33,4 @@ jobs:
 
       - name: Debug env vars
         run: |
-          python -c "omport os; print ('SENDER:' os.getenv('SENDER')); print ('PASSWORD', 'SET' if os.getenv ('PASSWORD') else 'NOT SET'); print ('RECEIVER:' os.getenv('RECEIVER'))"
+          python -c "import os; print ('SENDER:' os.getenv('SENDER')); print ('PASSWORD:', 'SET' if os.getenv ('PASSWORD') else 'NOT SET'); print ('RECEIVER:' os.getenv('RECEIVER'))"
