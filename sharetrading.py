@@ -7,9 +7,9 @@ import os
 # ------------------------------
 # CONFIG
 # ------------------------------
-EMAIL_SENDER = os.environ.get("EMAIL_SENDER")
-EMAIL_PASSWORD = os.environ.get("EMAIL_PASSWORD")
-EMAIL_RECEIVER = os.environ.get("EMAIL_RECEIVER")
+SENDER = os.environ.get("SENDER")
+PASSWORD = os.environ.get("PASSWORD")
+RECEIVER = os.environ.get("RECEIVER")
 
 def get_nifty_200_tickers():
     """Dynamically fetches Nifty 200 symbols to increase universe size."""
@@ -79,7 +79,7 @@ def send_email(short_list, long_list):
     try:
         with smtplib.SMTP("smtp.gmail.com", 587) as server:
             server.starttls()
-            server.login(EMAIL_SENDER, EMAIL_PASSWORD)
+            server.login(SENDER, PASSWORD)
             server.send_message(msg)
             print("✅ Email notification sent.")
     except Exception as e:
