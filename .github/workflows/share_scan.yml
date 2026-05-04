@@ -24,13 +24,19 @@ jobs:
         with:
           python-version: "3.11"
 
+      - name: Debug env vars
+        run: |
+          python << 'EOF'
+      import os
+      pwd = os.getenv ("PASSWORD")
+      print("TYPE:", type(pwd))
+      print("LENGTH:", len(pwd) if pwd else 0)
+      print("REPR:", repr(pwd))
+      EOF
+      
       - name: Install dependencies
         run: |
           pip install yfinance pandas
 
       - name: Run script
         run: python sharetrading.py
-
-      - name: Debug env vars
-        run: |
-          python -c "import os; print ('SENDER:' os.getenv('SENDER')); print ('PASSWORD:', 'SET' if os.getenv ('PASSWORD') else 'NOT SET'); print ('RECEIVER:' os.getenv('RECEIVER'))"
