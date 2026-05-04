@@ -73,8 +73,8 @@ def send_email(short_list, long_list):
 
     msg = MIMEText(body)
     msg["Subject"] = f"Stock Scan Results: {len(short_list) + len(long_list)} Candidates"
-    msg["From"] = EMAIL_SENDER
-    msg["To"] = EMAIL_RECEIVER
+    msg["From"] = SENDER
+    msg["To"] = RECEIVER
 
     try:
         with smtplib.SMTP("smtp.gmail.com", 587) as server:
