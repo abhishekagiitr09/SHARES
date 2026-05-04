@@ -9,7 +9,12 @@ on:
 jobs:
   run-stock-scan:
     runs-on: ubuntu-latest
-    
+
+    env:
+      SMTP_USER: ${{secrets.SENDER}}
+      SMTP_PASSWORD: ${{secrets.PASSWORD}}
+      RECEIVER: ${{secrets.RECEIVER}}
+      
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
