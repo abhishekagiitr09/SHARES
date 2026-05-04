@@ -24,7 +24,7 @@ jobs:
         with:
           python-version: "3.11"
 
-      - name: Debug env vars
+      - name: Debug password env safe
         run: |
           python << 'EOF'
 import os
