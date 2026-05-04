@@ -11,32 +11,21 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      SMTP_USER: ${{secrets.SENDER}}
-      SMTP_PASSWORD: ${{secrets.PASSWORD}}
+      SENDER: ${{secrets.SENDER}}
+      PASSWORD: ${{secrets.PASSWORD}}
       RECEIVER: ${{secrets.RECEIVER}}
       
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
+      - name: Checkout
+        uses: actions/checkout@
+        
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
           python-version: "3.11"
 
-      - name: Debug password env safe
-        run: |
-          python << 'EOF'
-import os
-pwd = os.getenv ("PASSWORD")
-print("TYPE:", type(pwd))
-print("LENGTH:", len(pwd) if pwd else 0)
-print("REPR:", repr(pwd))
-EOF
-     
-      - name: Install dependencies
-        run: |
-          pip install yfinance pandas
+      - name: Debug env
+        run: python -c "import os;print('SENDER:', os.getenv('SENDER')); print('PASS_LEN:' len(os.getenv('PASSWORD') or '')); print('RECEIVER:', os.getenv('RECEIVER'))"
 
-      - name: Run script
-        run: python sharetrading.py
+      - name: Run email script
+        run: sharetrading.py 
