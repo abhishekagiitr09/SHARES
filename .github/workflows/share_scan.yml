@@ -9,23 +9,19 @@ on:
 jobs:
   run-stock-scan:
     runs-on: ubuntu-latest
-
-    env:
-      SENDER: ${{secrets.SENDER}}
-      PASSWORD: ${{secrets.PASSWORD}}
-      RECEIVER: ${{secrets.RECEIVER}}
-      
+    
     steps:
-      - name: Checkout
-        uses: actions/checkout@
-        
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
           python-version: "3.11"
 
-      - name: Debug env
-        run: python -c "import os;print('SENDER:', os.getenv('SENDER')); print('PASS_LEN:' len(os.getenv('PASSWORD') or '')); print('RECEIVER:', os.getenv('RECEIVER'))"
+      - name: Install dependencies
+        run: |
+          pip install yfinance pandas
 
-      - name: Run email script
-        run: sharetrading.py 
+      - name: Run script
+        run: python sharetrading.py
